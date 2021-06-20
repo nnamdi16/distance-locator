@@ -1,7 +1,7 @@
 const PI = Math.PI;
 const RADIUS_OF_EARTH = 6371e3;
 
-const greatCircleDistance = (
+export const greatCircleDistance = (
   source: Coordinates,
   destination: Coordinates,
 ): number => {
@@ -30,6 +30,7 @@ const greatCircleDistance = (
   const d = RADIUS_OF_EARTH * c;
 
   // distance in kms.
+  console.log(d / 1000);
   return d / 1000;
 };
 
@@ -37,4 +38,11 @@ const getRadians = (coordinate: number): number => {
   return (coordinate * PI) / 180;
 };
 
-export default greatCircleDistance;
+
+
+export const convertArrayToObject = (arr, state) => {
+  return arr.reduce(function (acc, cur, i) {
+      acc[state[i]] = cur;
+      return acc;
+  }, {});
+};
