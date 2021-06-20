@@ -250,10 +250,6 @@ curl -X 'DELETE' \
 }
 ```
 
-### To view Swagger 2 API docs
-
-Run the server and browse to localhost:9000/swagger-ui.html
-
 # Tools/Languages Used
 
 * [X] Visual Studio Code
