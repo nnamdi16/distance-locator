@@ -41,73 +41,217 @@ You can use this sample service to understand the conventions and configurations
 
 Here are some endpoints you can call:
 
-### Create an account
+### Create new Location and Calculate Distance
 
 ```
-http://localhost:9000/api/auth/signup
+http://localhost:5000/location
 
 https://reloadly-account-app.herokuapp.com/api/auth/signup
 ```
 
-### To login to the account
+
+
+**Request**
+
+```bash
+curl -X 'POST' \
+  'http://localhost:5000/location' \
+  -H 'accept: */*' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "description": "A place in lagos Island",
+  "website": "www.distancelocation.com",
+  "phoneNumber": "08057683127",
+  "contactPerson": "Shelly Kelby",
+  "sourceName": "Lagos Island",
+  "destinationName": "Badagry",
+  "sourceLocation": {"latitude":6.4549, "longitude":3.4246},
+  "destinationLocation": {"latitude":6.438963, "longitude":3.35122}
+}'
 
 ```
-http://localhost:9000/api/auth/login
+
+**Response**
+
+```json
+{
+  "description": "A place in lagos Island",
+  "website": "www.distancelocation.com",
+  "phoneNumber": "08057683127",
+  "contactPerson": "Shelly Kelby",
+  "sourceName": "Lagos Island",
+  "destinationName": "Badagry",
+  "distance": "8.30",
+  "sourceCoordinates": {
+    "type": "Point",
+    "coordinates": [
+      3.4246,
+      6.4549
+    ]
+  },
+  "destinationCoordinates": {
+    "type": "Point",
+    "coordinates": [
+      3.35122,
+      6.438963
+    ]
+  },
+  "createdBy": null,
+  "updatedBy": null,
+  "Comment": null,
+  "id": 2,
+  "isActive": true,
+  "isArchived": false,
+  "createdDate": "2021-06-20T13:36:22.178Z",
+  "updatedDate": "2021-06-20T13:36:22.178Z",
+  "isDeleted": false
+}
+```
+
+### Fetch all locations
+
+```
+http://localhost:5000/location
 
 https://reloadly-account-app.herokuapp.com/api/auth/login
 ```
 
-### Get list of accounts or account info
 
-```
-http://localhost:9000/account/{id}
-http://localhost:9000/api/accounts/all
+**Request**
 
-https://reloadly-account-app.herokuapp.com/account/{id}
-https://reloadly-account-app.herokuapp.com/api/accounts/all
-
+```bash
+curl -X 'GET' \
+  'http://localhost:5000/location' \
+  -H 'accept: */*'
 ```
 
-### Create an account
+**Response**
 
-```
-POST /api/v1.0/notifier/notify/{channelType}
-Accept: application/json
-Content-Type: application/json
-
-{
-    "username":"reloadly1234",
-    "email": "znwabuokei@gmail.com",
-    "address": "Lagos State",
-    "phoneNumber": "+234704599769959",
-    "password":"12345893",
-    "name": "Basky Clan"
-}
-
-RESPONSE: HTTP 201 (Created)
-{
-    "accountId": 13,
-    "username": "reloadly1234",
-    "name": "Basky Clan",
-    "address": "Lagos State",
-    "phoneNumber": "+234704599769959",
-    "email": "znwabuokei@gmail.com",
-    "password": "$2a$10$XDRjfx7JYeP4g0EkKfi.UeqEAuQWIYTM8xB4JKHKvylH/9QEqufS2",
-    "roles": [
-        {
-            "id": 1,
-            "name": "ROLE_USER"
-        }
-    ],
-    "_links": {
-        "self": {
-            "href": "http://localhost:9000/api/accounts/account/13"
-        },
-        "accounts": {
-            "href": "http://localhost:9000/api/accounts/all"
-        }
+```json
+[
+  {
+    "id": 1,
+    "isActive": true,
+    "isArchived": false,
+    "createdDate": "2021-06-20T13:31:53.670Z",
+    "createdBy": null,
+    "updatedDate": "2021-06-20T13:31:53.670Z",
+    "updatedBy": null,
+    "Comment": null,
+    "isDeleted": false,
+    "description": "A place in lagos Island",
+    "website": "www.distancelocation.com",
+    "phoneNumber": "08057683127",
+    "contactPerson": "Shelly Kelby",
+    "sourceName": "Lagos Island",
+    "destinationName": "Festac",
+    "distance": "15.64",
+    "sourceCoordinates": {
+      "type": "Point",
+      "coordinates": [
+        3.4246,
+        6.4549
+      ]
+    },
+    "destinationCoordinates": {
+      "type": "Point",
+      "coordinates": [
+        3.283514,
+        6.466445
+      ]
     }
+  },
+  {
+    "id": 2,
+    "isActive": true,
+    "isArchived": false,
+    "createdDate": "2021-06-20T13:36:22.178Z",
+    "createdBy": null,
+    "updatedDate": "2021-06-20T13:36:22.178Z",
+    "updatedBy": null,
+    "Comment": null,
+    "isDeleted": false,
+    "description": "A place in lagos Island",
+    "website": "www.distancelocation.com",
+    "phoneNumber": "08057683127",
+    "contactPerson": "Shelly Kelby",
+    "sourceName": "Lagos Island",
+    "destinationName": "Badagry",
+    "distance": "8.30",
+    "sourceCoordinates": {
+      "type": "Point",
+      "coordinates": [
+        3.4246,
+        6.4549
+      ]
+    },
+    "destinationCoordinates": {
+      "type": "Point",
+      "coordinates": [
+        3.35122,
+        6.438963
+      ]
+    }
+  }
+]
+```
+
+### Fetch Specific Location
+
+```bash
+http://localhost:5000/location/{id}
+http://localhost:9000/api/accounts/all
+```
+
+**Request**
+
+```bash
+curl -X 'GET' \
+  'http://localhost:5000/location/1' \
+  -H 'accept: */*'
+```
+
+**Response**
+
+```json
+{
+  "id": 1,
+  "isActive": true,
+  "isArchived": false,
+  "createdDate": "2021-06-20T13:31:53.670Z",
+  "createdBy": null,
+  "updatedDate": "2021-06-20T13:31:53.670Z",
+  "updatedBy": null,
+  "Comment": null,
+  "isDeleted": false,
+  "description": "A place in lagos Island",
+  "website": "www.distancelocation.com",
+  "phoneNumber": "08057683127",
+  "contactPerson": "Shelly Kelby",
+  "sourceName": "Lagos Island",
+  "destinationName": "Festac",
+  "distance": "15.64",
+  "sourceCoordinates": {
+    "type": "Point",
+    "coordinates": [
+      3.4246,
+      6.4549
+    ]
+  },
+  "destinationCoordinates": {
+    "type": "Point",
+    "coordinates": [
+      3.283514,
+      6.466445
+    ]
+  }
 }
+```
+
+### Edit Location
+
+```
+
 ```
 
 ### Login to account
