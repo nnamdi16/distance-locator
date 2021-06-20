@@ -1,9 +1,9 @@
-import { BaseEntity } from "src/shared/base.entity";
-import { Column, Index } from "typeorm";
-import {Point } from 'geojson'
+import { BaseEntity } from 'src/shared/base.entity';
+import { Column, Entity, Index } from 'typeorm';
+import { Point } from 'geojson';
 
-class LocationEntity extends BaseEntity{
-
+@Entity({ name: 'location' })
+class LocationEntity extends BaseEntity {
   @Column()
   public description: string;
 
@@ -28,7 +28,7 @@ class LocationEntity extends BaseEntity{
   @Index({ spatial: true })
   @Column({
     type: 'geography',
-    spatialFeatureType: 'Point', 
+    spatialFeatureType: 'Point',
     srid: 4326,
     nullable: true,
   })
@@ -37,11 +37,11 @@ class LocationEntity extends BaseEntity{
   @Index({ spatial: true })
   @Column({
     type: 'geography',
-    spatialFeatureType: 'Point', 
+    spatialFeatureType: 'Point',
     srid: 4326,
     nullable: true,
   })
   public destinationCoordinates: Point;
- }
- 
-export default LocationEntity
+}
+
+export default LocationEntity;
