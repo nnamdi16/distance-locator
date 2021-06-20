@@ -1,7 +1,7 @@
 import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerDocumentOptions, SwaggerModule } from '@nestjs/swagger';
-import helmet from 'helmet';
+import * as helmet from 'helmet';
 import { AppModule } from './app.module';
 
 const port = process.env.PORT
@@ -10,7 +10,6 @@ async function bootstrap() {
     cors: true,
     logger: ['debug','error', 'log', 'verbose', 'warn']
   });
-  await app.listen(3000);
   app.enableCors();
   app.use(helmet());
   const config = new DocumentBuilder()
