@@ -30,7 +30,6 @@ export const greatCircleDistance = (
   const d = RADIUS_OF_EARTH * c;
 
   // distance in kms.
-  console.log(d / 1000);
   return d / 1000;
 };
 
