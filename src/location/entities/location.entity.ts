@@ -22,7 +22,7 @@ class LocationEntity extends BaseEntity {
   @Column()
   public destinationName: string;
 
-  @Column()
+  @Column({ type: 'decimal', precision: 5, scale: 2, default: 0, })
   public distance: number;
 
   @Index({ spatial: true })
