@@ -6,22 +6,18 @@ Distance locator is a REST API that can determine the distance between a locatio
 
 * Clone this repository.
 * Create [Postgres](https://www.postgresql.org/docs/9.0/tutorial-createdb.html) database.
-
-  - run `com/nnamdi/account/data/userRoles.sql`
 * Make sure npm and node is installed.
 * Change the file name from example.env to .env, adding the environmental variable.
 * You can run the project  by running ```yarn start```
-* Once successfully built, you can run access the swagger documentation via http://localhost:{PORT}
-
-```
- http://localhost:{PORT}/api
-```
-
-For test you can access the API's  using the link below
+* Once successfully built, you can run access the swagger documentation via http://localhost:{PORT}/api or for a direct test  on https://distance-locator.herokuapp.com/api/
 
 ```bash
-
+https://distance-locator.herokuapp.com/api/
+http://localhost:{PORT}/api
 ```
+
+
+
 
 Once the application runs you should see this below
 
@@ -41,7 +37,7 @@ Here are some endpoints you can call:
 
 ```bash
 curl -X 'POST' \
-  'http://localhost:5000/location' \
+  'https://distance-locator.herokuapp.com/api/location' \
   -H 'accept: */*' \
   -H 'Content-Type: application/json' \
   -d '{
@@ -100,7 +96,7 @@ curl -X 'POST' \
 
 ```bash
 curl -X 'GET' \
-  'http://localhost:5000/location' \
+  'https://distance-locator.herokuapp.com/api/location' \
   -H 'accept: */*'
 ```
 
@@ -181,7 +177,7 @@ curl -X 'GET' \
 
 ```bash
 curl -X 'GET' \
-  'http://localhost:5000/location/1' \
+  'https://distance-locator.herokuapp.com/api/location/1' \
   -H 'accept: */*'
 ```
 
@@ -228,7 +224,7 @@ curl -X 'GET' \
 
 ```bash
 curl -X 'PATCH' \
-  'http://localhost:5000/location/1' \
+  'https://distance-locator.herokuapp.com/api/location/1' \
   -H 'accept: */*' \
   -H 'Content-Type: application/json' \
   -d '{
@@ -244,7 +240,7 @@ curl -X 'PATCH' \
 
 ```bash
 curl -X 'DELETE' \
-  'http://localhost:5000/location/2' \
+  'https://distance-locator.herokuapp.com/api/location/2' \
   -H 'accept: */*'
 ```
 
