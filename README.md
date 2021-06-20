@@ -31,25 +31,11 @@ Once the application runs you should see this below
 [Nest] 77187   - 06/20/2021, 13:18:48   Server started on http://localhost:5000, Boostrap +2ms
 ```
 
-## About the Service
-
-The service is just a simple REST service for creating accounts. It uses a mysql database to store the data. You can also use other relational database like PostgreSQL. If your database connection properties work, you can call some REST endpoints defined in ```package com.nnamdi.account.controller``` on **port 9000**. (see below)
-
-More interestingly, you can start calling some operational endpoints (see full list below) like ```/signup``` and ```/login``` (these are available on **port 9000**)
-
-You can use this sample service to understand the conventions and configurations that allow you to create a DB-backend RESTful service. Once you understand and get comfortable with the sample app you can add your own services following the same patterns as the sample service.
+## Services
 
 Here are some endpoints you can call:
 
 ### Create new Location and Calculate Distance
-
-```
-http://localhost:5000/location
-
-https://reloadly-account-app.herokuapp.com/api/auth/signup
-```
-
-
 
 **Request**
 
@@ -109,13 +95,6 @@ curl -X 'POST' \
 ```
 
 ### Fetch all locations
-
-```
-http://localhost:5000/location
-
-https://reloadly-account-app.herokuapp.com/api/auth/login
-```
-
 
 **Request**
 
@@ -198,11 +177,6 @@ curl -X 'GET' \
 
 ### Fetch Specific Location
 
-```bash
-http://localhost:5000/location/{id}
-http://localhost:9000/api/accounts/all
-```
-
 **Request**
 
 ```bash
@@ -250,33 +224,33 @@ curl -X 'GET' \
 
 ### Edit Location
 
+**Request**
+
+```bash
+curl -X 'PATCH' \
+  'http://localhost:5000/location/1' \
+  -H 'accept: */*' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "description": "A place in Ikorodu",
+  "sourceName": "Ikorodu",
+  "destinationName": "Badagry",
+  "sourceLocation": {"latitude":6.619413, "longitude":3.4246},
+  "destinationLocation": {"latitude":6.438963, "longitude":3.510454}
+}'
 ```
 
+### Delete Location
+
+```bash
+curl -X 'DELETE' \
+  'http://localhost:5000/location/2' \
+  -H 'accept: */*'
 ```
 
-### Login to account
-
-```
-POST /api/auth/login
-Accept: application/json
-Content-Type: application/json
-
+```json
 {
-    "username":"Bolaji12344",
-    "password":"12345893"
-   
-}
-
-RESPONSE: HTTP 200 
-{
-    "id": 12,
-    "username": "Bolaji12344",
-    "email": "bodennamdi30@yahoo.ca",
-    "roles": [
-        "ROLE_USER"
-    ],
-    "accessToken": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJCb2xhamkxMjM0NCIsImlhdCI6MTYxNzE0MDcwMCwiZXhwIjoxNjE3MjI3MTAwfQ.DsiyDdZrgsFwA9BlqsF_xVjAiiP-GZCYX11MNUP_BvGuiPkyZAwMLoGiSkn1Eh1liS4szIK0FPMX8aPsN6jOMA",
-    "tokenType": "Bearer"
+  "message": "Location details deleted successfully"
 }
 ```
 
@@ -284,16 +258,29 @@ RESPONSE: HTTP 200
 
 Run the server and browse to localhost:9000/swagger-ui.html
 
-# About Spring Boot
+# Tools/Languages Used
 
-Spring Boot is an "opinionated" application bootstrapping framework that makes it easy to create new RESTful services (among other types of applications). It provides many of the usual Spring facilities that can be configured easily usually without any XML. In addition to easy set up of Spring Controllers, Spring Data, etc. Spring Boot comes with the Actuator module that gives the application the following endpoints helpful in monitoring and operating the service:
+* [X] Visual Studio Code
+* [X] Nestjs
+* [X] TypeORM
+* [X] Postgresql
+* [X] Heroku
 
-# Area of Improvement
 
-**1. Setting up notification on successful payment - Partly completed**
 
-**2. Implementing JWT Authentication**
+**Areas to Pay attention to**
 
-**2. Improve Code documentation**
+* Service class implementation -**location.service.ts**
+
+**Areas Undone**
+
+* Defining the model using Grpc - The model can also be implemented using Grpc.
+* Writing test - I would have written unit and Integration test if I had more time.
+
+
+
+**Area of Improvement**
+
+* Refactor the update method in the service class - **location.service.ts**
 
 # Questions and Comments: nwabuokeinnamdi19@gmail.com
